@@ -27,10 +27,9 @@ YOLOv5, YOLOv8, CNN 사용
 # 데이터 전처리
 데이터 수가 많고 질이 좋은 AI Hub 데이터를 사용
 
-Json 파일 구조 확인을 위한 예시
-
 
 ### YOLO 학습을 위한 기본 라벨링 전처리
+Json 파일 구조 확인을 위한 예시
 1. YOLO 학습을 위해 Bounding Box가 하나가 아닌 파일 삭제
 
         for i in os.listdir(labels_folder_path):
