@@ -31,7 +31,7 @@ YOLOv5, YOLOv8, CNN 사용
 
 ### YOLO 학습을 위한 기본 라벨링 전처리
 Json 파일 구조 확인을 위한 예시
-1. YOLO 학습을 위해 Bounding Box가 하나가 아닌 파일 삭제
+#### 1. YOLO 학습을 위해 Bounding Box가 하나가 아닌 파일 삭제
 
         for i in os.listdir(labels_folder_path):
             file_name = i.replace('.Json','')
@@ -46,7 +46,7 @@ Json 파일 구조 확인을 위한 예시
                 os.remove(label_file_path)
                 os.remove(image_file_path)
 
-2. Bounding Drawing 방식이 'POLYGON'인 경우에는 좌표 x1, x2, y1, y2로 변환
+#### 2. Bounding Drawing 방식이 'POLYGON'인 경우에는 좌표 x1, x2, y1, y2로 변환
 
             elif data['Bounding'][0]['Drawing'] == 'POLYGON':
                 x_point_list=[]
@@ -59,7 +59,7 @@ Json 파일 구조 확인을 위한 예시
                 y1 = min(y_point_list)
                 y2 = max(y_point_list)
 
-3. Class Name과 좌표 정보가 담긴 txt 파일 생성
+#### 3. Class Name과 좌표 정보가 담긴 txt 파일 생성
 
             # YOLO에 맞게 좌표 변환
             x_center = ((x1 + x2) / 2) / img_width
@@ -86,7 +86,7 @@ Json 파일 구조 확인을 위한 예시
                     file.write(f"{class_id} {x_center:f} {y_center:f} {width_norm:f} {height_norm:f}\n")
 
 ### 데이터 불균형 해결을 위한 전처리
-1. 데이터 수 맞추기
+#### 1. 데이터 수 맞추기
 * 기존 데이터
   서랍장  약 5400장,
   선풍기 약 4000장,
@@ -104,7 +104,7 @@ Json 파일 구조 확인을 위한 예시
 
 의자나 자전거의 경우 각 소분류 항목도 총 1500장 중에서 비율을 맞추어줌
 
-2. Image Augmentation
+#### 2. Image Augmentation
    의자 중 장의자의 이미지 경우 200장 미만으로 다른 의자(일반의자, 회전의자)와 데이터 수 차이가 큼
    
    Image Augmentation을 활용해 데이터 증강 시도
