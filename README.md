@@ -15,9 +15,10 @@
 YOLOv5, YOLOv8, CNN 사용
 
 * YOLO Documents
-YOLOv5 : <https://github.com/ultralytics/yolov5>
+  
+    YOLOv5 : <https://github.com/ultralytics/yolov5>
 
-YOLOv8 : <https://github.com/ultralytics/ultralytics>
+    YOLOv8 : <https://github.com/ultralytics/ultralytics>
 
 * Code
 
