@@ -85,6 +85,25 @@ Json 파일 구조 확인을 위한 예시
                 with open(os.path.join(output_path, name+'.txt'), 'w') as file:
                     file.write(f"{class_id} {x_center:f} {y_center:f} {width_norm:f} {height_norm:f}\n")
 
+#### 4. 데이터셋 정보가 담긴 yaml 파일 생성
+
+    names:
+      0: chair
+      1: tv
+      2: bicycle
+      3: fan
+      4: sofa
+      5: desk
+      6: chiffonier
+      7: pot
+      8: jar
+      nc: 9
+    path: /home/user/KHW_230619/kh_2/1500_bicycle
+    train: images/train
+    val: images/val
+
+    
+
 ### 데이터 불균형 해결을 위한 전처리
 #### 1. 데이터 수 맞추기
 * 기존 데이터
