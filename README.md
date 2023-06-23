@@ -87,20 +87,16 @@ Json 파일 구조 확인을 위한 예시
 
 #### 4. 데이터셋 정보가 담긴 yaml 파일 생성
 
-    names:
-      0: chair
-      1: tv
-      2: bicycle
-      3: fan
-      4: sofa
-      5: desk
-      6: chiffonier
-      7: pot
-      8: jar
-      nc: 9
-    path: /home/user/KHW_230619/kh_2/1500_bicycle
-    train: images/train
-    val: images/val
+    label_dic = {0: 'chair', 1: 'tv', 2: 'bicycle', 3: 'fan', 4: 'sofa', 5: 'desk', 6: 'chiffonier', 7: 'pot', 8: 'jar'}
+    with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
+    data = {
+        'path': '/content/drive/MyDrive/BIG_PROJECT',
+        'train':'images/train',
+        'val': 'images/val',
+        'nc': len(label_dic),
+        'names': label_dic,
+    }
+    yaml.safe_dump(data, f)
 
     
 
