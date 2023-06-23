@@ -33,10 +33,10 @@ Json 파일 구조 확인을 위한 예시
 
 1. YOLO 학습을 위해 Bounding Box가 하나가 아닌 파일 삭제
 
-    for i in os.listdir(labels_folder_path):
-        file_name = i.replace('.Json','')
-        label_file_path = labels_folder_path + '/'+ i
-        image_file_path = images_folder_path + '/'+ i.replace('.Json','.jpg')
+        for i in os.listdir(labels_folder_path):
+            file_name = i.replace('.Json','')
+            label_file_path = labels_folder_path + '/'+ i
+            image_file_path = images_folder_path + '/'+ i.replace('.Json','.jpg')
         
         with open(label_file_path,'r', encoding='UTF8') as file:
             data = json.load(file)
