@@ -13,7 +13,7 @@
 # mini test를 통한 데이터 질 검증과 모델 선택
 의자 100장, TV 100장, 자전거 100장, 선풍기 100장 총 400장의 데이터로 모델 선정을 위해 간단한 실험 진행  
 
-YOLOv5, YOLOv8, CNN 사용
+YOLOv5, YOLOv8n, YOLOv8s,CNN 사용
 
 * YOLO Documents
   
@@ -85,7 +85,7 @@ Json 파일 구조 확인을 위한 예시
                 with open(os.path.join(output_path, name+'.txt'), 'w') as file:
                     file.write(f"{class_id} {x_center:f} {y_center:f} {width_norm:f} {height_norm:f}\n")
 
-#### 4. 데이터셋 정보가 담긴 yaml 파일 생성
+#### 4. 데이터셋 정보가 담긴 yaml 파일 생성 ################label_dic 수정 
 
       label_dic = {0: 'chair', 1: 'tv', 2: 'bicycle', 3: 'fan', 4: 'sofa', 5: 'desk', 6: 'chiffonier', 7: 'pot', 8: 'jar'}
       with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
@@ -128,13 +128,73 @@ Json 파일 구조 확인을 위한 예시
 # 모델 학습
 
 #### 1. YOLOv8n 학습
-#### 2. 공공데이터 포털 데이터셋 추가 후 비교
-#### 3. YOLOv8m과 비교
+  #ultralytics설치
+  !pip install --target=$my_path ultralytics
+  import ultralytics
+  ultralytics.checks()
+
+  from ultralytics import YOLO
+  #모델 yolov8n
+  model = YOLO('yolov8n.pt')
+
+  with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
+      data = {
+          'path': '/content/drive/MyDrive/BIG_PROJECT/',
+          'train':'/content/drive/MyDrive/BIG_PROJECT/images/train',
+          'val': '/content/drive/MyDrive/BIG_PROJECT/images/val',
+          'nc': len(label_dic),
+          'names': label_dic,
+      }
+      yaml.safe_dump(data, f)
+    #모델학습
+    model.train(data='/content/drive/MyDrive/BIG_PROJECT/class.yaml', epochs=5,patience=5,batch=32,imgsz=416)
+#### 2. 공공데이터 포털 데이터셋 추가 후 비교 (현우님 비교 데이터 보고 삭제 or 넣기)
+#### 3. YOLOv8m과 비교 (최종모델 때 멀 사용했는지 수정)
 
 # ML Flow와 모델 연동 학습
+# MLflow 실행 시작
+with mlflow.start_run(experiment_id=exp_id, run_name=myname):
 
+    ## 학습 전
+
+    # YOLO 모델 불러오기
+    model = YOLO('yolov8n.pt')
+
+    # 하이퍼파라미터 로깅
+    epochs = 100 #100
+    patience = 35 #30
+    batch_size = 32
+    imgsz = 416
+    data_path = '/content/drive/MyDrive/BIG_PROJECT/class.yaml'
+
+    mlflow.log_param("epochs", epochs)
+    mlflow.log_param("patience", patience)
+    mlflow.log_param("batch_size", batch_size)
+    mlflow.log_param("imgsz", imgsz)
+    mlflow.log_param("data_path", data_path)
+
+    model.add_callback("on_fit_epoch_end",on_fit_epoch_end)
+
+    ## 모델 학습
+    results = model.train(data=data_path, epochs=epochs, patience=patience, batch=batch_size, imgsz=imgsz)
+
+    ## 학습 후
+
+    # 모델 메트릭 로깅
+    mlflow.log_artifacts('/content/runs/detect/train2')
+
+    # 베스트 모델 불러오기
+    checkpoint = torch.load('/content/runs/detect/train2/weights/best.pt', map_location='cpu')
+    best_model = checkpoint.get('model') #, checkpoint)
+
+    # best.pt를 모델 폴더 안에 넣어줘야함!
+    mlflow.log_artifact('/content/runs/detect/train2/weights/best.pt', artifact_path='best_model')
+
+    # MLflow에 모델 로깅 및 등록된 모델로 등록
+    mlflow.pytorch.log_model(best_model, "best_model", registered_model_name=model_name)
 # YOLO 모델 탐지 결과 text로 반환
-
+predict의 매개 변수 save_txt,save_conf 을 이용하요 class 와 확률을 text로 반환
+result = model.predict(source = '/content/drive/MyDrive/BIG_PROJECT/images/test', save=True,save_txt=True,save_conf=True)
    
 
 
