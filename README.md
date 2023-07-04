@@ -128,26 +128,26 @@ Json 파일 구조 확인을 위한 예시
 # 모델 학습
 
 #### 1. YOLOv8n 학습
-  #ultralytics설치
-  !pip install --target=$my_path ultralytics
-  import ultralytics
-  ultralytics.checks()
+    #ultralytics설치
+    !pip install --target=$my_path ultralytics
+    import ultralytics
+    ultralytics.checks()
 
-  from ultralytics import YOLO
-  #모델 yolov8n
-  model = YOLO('yolov8n.pt')
+    from ultralytics import YOLO
+    #모델 yolov8n
+    model = YOLO('yolov8n.pt')
 
-  with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
-      data = {
-          'path': '/content/drive/MyDrive/BIG_PROJECT/',
-          'train':'/content/drive/MyDrive/BIG_PROJECT/images/train',
-          'val': '/content/drive/MyDrive/BIG_PROJECT/images/val',
-          'nc': len(label_dic),
-          'names': label_dic,
-      }
-      yaml.safe_dump(data, f)
-    #모델학습
-    model.train(data='/content/drive/MyDrive/BIG_PROJECT/class.yaml', epochs=5,patience=5,batch=32,imgsz=416)
+    with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
+        data = {
+            'path': '/content/drive/MyDrive/BIG_PROJECT/',
+            'train':'/content/drive/MyDrive/BIG_PROJECT/images/train',
+            'val': '/content/drive/MyDrive/BIG_PROJECT/images/val',
+            'nc': len(label_dic),
+            'names': label_dic,
+        }
+        yaml.safe_dump(data, f)
+      #모델학습
+      model.train(data='/content/drive/MyDrive/BIG_PROJECT/class.yaml', epochs=5,patience=5,batch=32,imgsz=416)
 #### 2. 공공데이터 포털 데이터셋 추가 후 비교 (현우님 비교 데이터 보고 삭제 or 넣기)
 #### 3. YOLOv8m과 비교 (최종모델 때 멀 사용했는지 수정)
 
