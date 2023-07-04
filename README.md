@@ -153,30 +153,30 @@ Json 파일 구조 확인을 위한 예시
 
 # ML Flow와 모델 연동 학습
 # MLflow 실행 시작
-with mlflow.start_run(experiment_id=exp_id, run_name=myname):
+    with mlflow.start_run(experiment_id=exp_id, run_name=myname):
 
     ## 학습 전
 
     # YOLO 모델 불러오기
-    model = YOLO('yolov8n.pt')
+        model = YOLO('yolov8n.pt')
 
     # 하이퍼파라미터 로깅
-    epochs = 100 #100
-    patience = 35 #30
-    batch_size = 32
-    imgsz = 416
-    data_path = '/content/drive/MyDrive/BIG_PROJECT/class.yaml'
+        epochs = 100 #100
+        patience = 35 #30
+        batch_size = 32
+        imgsz = 416
+        data_path = '/content/drive/MyDrive/BIG_PROJECT/class.yaml'
 
-    mlflow.log_param("epochs", epochs)
-    mlflow.log_param("patience", patience)
-    mlflow.log_param("batch_size", batch_size)
-    mlflow.log_param("imgsz", imgsz)
-    mlflow.log_param("data_path", data_path)
+        mlflow.log_param("epochs", epochs)
+        mlflow.log_param("patience", patience)
+        mlflow.log_param("batch_size", batch_size)
+        mlflow.log_param("imgsz", imgsz)
+        mlflow.log_param("data_path", data_path)
 
-    model.add_callback("on_fit_epoch_end",on_fit_epoch_end)
+        model.add_callback("on_fit_epoch_end",on_fit_epoch_end)
 
-    ## 모델 학습
-    results = model.train(data=data_path, epochs=epochs, patience=patience, batch=batch_size, imgsz=imgsz)
+        ## 모델 학습
+        results = model.train(data=data_path, epochs=epochs, patience=patience, batch=batch_size, imgsz=imgsz)
 
     ## 학습 후
 
