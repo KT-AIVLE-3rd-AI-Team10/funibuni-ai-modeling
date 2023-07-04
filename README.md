@@ -193,7 +193,7 @@ Json 파일 구조 확인을 위한 예시
     # MLflow에 모델 로깅 및 등록된 모델로 등록
     mlflow.pytorch.log_model(best_model, "best_model", registered_model_name=model_name)
 # YOLO 모델 탐지 결과 text로 반환
-predict의 매개 변수 save_txt,save_conf 을 이용하요 class 와 확률을 text로 반환
+predict의 매개 변수 save_txt, save_conf을 이용하여 class 와 confidence scores을 text로 반환
 
       result = model.predict(source = '/content/drive/MyDrive/BIG_PROJECT/images/test', save=True,save_txt=True,save_conf=True)
    
