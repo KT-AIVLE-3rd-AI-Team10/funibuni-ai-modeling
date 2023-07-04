@@ -181,14 +181,14 @@ Json 파일 구조 확인을 위한 예시
     ## 학습 후
 
     # 모델 메트릭 로깅
-    mlflow.log_artifacts('/content/runs/detect/train2')
+    mlflow.log_artifacts('/content/runs/detect/train')
 
     # 베스트 모델 불러오기
-    checkpoint = torch.load('/content/runs/detect/train2/weights/best.pt', map_location='cpu')
+    checkpoint = torch.load('/content/runs/detect/train/weights/best.pt', map_location='cpu')
     best_model = checkpoint.get('model') #, checkpoint)
 
     # best.pt를 모델 폴더 안에 넣어줘야함!
-    mlflow.log_artifact('/content/runs/detect/train2/weights/best.pt', artifact_path='best_model')
+    mlflow.log_artifact('/content/runs/detect/train/weights/best.pt', artifact_path='best_model')
 
     # MLflow에 모델 로깅 및 등록된 모델로 등록
     mlflow.pytorch.log_model(best_model, "best_model", registered_model_name=model_name)
