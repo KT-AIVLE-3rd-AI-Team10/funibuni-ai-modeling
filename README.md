@@ -203,3 +203,4 @@ predict의 매개 변수 save_txt, save_conf을 이용하여 class 와 confidenc
 
 
 
+
