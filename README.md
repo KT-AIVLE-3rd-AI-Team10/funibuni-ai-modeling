@@ -85,19 +85,9 @@ Json 파일 구조 확인을 위한 예시
                 with open(os.path.join(output_path, name+'.txt'), 'w') as file:
                     file.write(f"{class_id} {x_center:f} {y_center:f} {width_norm:f} {height_norm:f}\n")
 
-#### 4. 데이터셋 정보가 담긴 yaml 파일 생성 ################label_dic 수정 
+#### 4. 데이터셋 정보가 담긴 yaml 파일 생성 
 
-      label_dic = {0: chair
-  1: tv
-  2: bicycle
-  3: fan
-  4: sofa
-  5: desk
-  6: chiffonier
-  7: pot
-  8: jar
-  9: bed
-  10: ston_jade_bed}
+      label_dic = {0: chair, 1: tv, 2: bicycle, 3: fan, 4: sofa, 5: desk, 6: chiffonier, 7: pot, 8: jar, 9: bed, 10: ston_jade_bed}
       with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
       data = {
           'path': '/content/drive/MyDrive/BIG_PROJECT',
