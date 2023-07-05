@@ -1,0 +1,8 @@
+names:
+  0: adult
+  1: kid_2
+  2: kid_34
+nc: 3
+path: /home/user/KHW_230619/semi_bicycle/semi_bicycle
+train: images/train
+val: images/val

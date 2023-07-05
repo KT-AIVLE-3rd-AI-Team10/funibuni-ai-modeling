@@ -1,0 +1,16 @@
+names:
+  0: chair
+  1: tv
+  2: bicycle
+  3: fan
+  4: sofa
+  5: desk
+  6: chiffonier
+  7: pot
+  8: jar
+  9: bed
+  10: ston_jade_bed
+nc: 11
+path: /home/user/KHW_230619/kh_2/1500_bicycle_bed
+train: images/train
+val: images/val

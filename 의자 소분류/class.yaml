@@ -1,0 +1,8 @@
+names:
+  0: normal_chair
+  1: long_chair
+  2: turning_chair
+nc: 3
+path: /home/user/KHW_230619/semi_chair/Semi_chair
+train: images/train
+val: images/val
