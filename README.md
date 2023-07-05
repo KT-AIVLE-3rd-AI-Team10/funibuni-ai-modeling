@@ -87,7 +87,17 @@ Json 파일 구조 확인을 위한 예시
 
 #### 4. 데이터셋 정보가 담긴 yaml 파일 생성 ################label_dic 수정 
 
-      label_dic = {0: 'chair', 1: 'tv', 2: 'bicycle', 3: 'fan', 4: 'sofa', 5: 'desk', 6: 'chiffonier', 7: 'pot', 8: 'jar'}
+      label_dic = {0: chair
+  1: tv
+  2: bicycle
+  3: fan
+  4: sofa
+  5: desk
+  6: chiffonier
+  7: pot
+  8: jar
+  9: bed
+  10: ston_jade_bed}
       with open('/content/drive/MyDrive/BIG_PROJECT/class.yaml', 'w') as f:
       data = {
           'path': '/content/drive/MyDrive/BIG_PROJECT',
