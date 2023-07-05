@@ -147,7 +147,7 @@ Json 파일 구조 확인을 위한 예시
         }
         yaml.safe_dump(data, f)
       #모델학습
-      model.train(data='/content/drive/MyDrive/BIG_PROJECT/class.yaml', epochs=5,patience=5,batch=32,imgsz=416)
+      model.train(data='/content/drive/MyDrive/BIG_PROJECT/class.yaml', epochs=100,patience=35,batch=32,imgsz=416)
 #### 2. 공공데이터 포털 데이터셋 추가 후 비교 (현우님 비교 데이터 보고 삭제 or 넣기)
 #### 3. YOLOv8m과 비교 (최종모델 때 멀 사용했는지 수정)
 
